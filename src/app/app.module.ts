@@ -8,17 +8,21 @@ import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { EventcardComponent } from './eventcard/eventcard.component';
 import { FooterComponent } from './footer/footer.component';
 
+import {AppRoutingModule} from './app-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     JumbotronComponent,
     EventcardComponent,
-    FooterComponent
+    FooterComponent,
+    ...AppRoutingModule.routableComponents
   ],
   imports: [
     BrowserModule,
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

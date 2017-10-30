@@ -1,3 +1,4 @@
+
 /* global css*/
 html{
   font-size: 12px;
@@ -16,6 +17,11 @@ body {
   font-size: 1.2em;
 }
 
+.content-container {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+}
 
 footer {
   height: 60px;
@@ -36,4 +42,16 @@ footer {
 .calendar{
   height: 50px;
   width:50px;
+}
+
+.profil{
+  height: 200px;
+  width:200px;
+}
+
+
+@media (min-width:768px){
+  html{
+    font-size:16px;
+  }
 }
