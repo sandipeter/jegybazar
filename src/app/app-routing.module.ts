@@ -14,10 +14,13 @@ import {ProfileComponent} from './profile/profile.component';
 import {ProfileEditComponent} from './profile-edit/profile-edit.component';
 import {TicketListComponent} from './ticket-list/ticket-list.component';
 import {TicketDetailComponent} from './ticket-detail/ticket-detail.component';
+import {JumbotronComponent} from './jumbotron/jumbotron.component';
+import {BidComponent} from './bid/bid.component';
 
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path: 'jumbotron', component: JumbotronComponent},
   {path: 'event',
     component: EventComponent,
     children : [
@@ -28,18 +31,18 @@ const routes: Routes = [
   {
     path: 'ticket',
     component: TicketComponent,
-    children:[
+    children: [
       {path: 'list', component: TicketListComponent},
       {path: 'new', component: TicketDetailComponent},
-      {path: ':id/bid', component: TicketDetailComponent},
+      {path: ':id/bid', component: BidComponent},
     ]
   },
   {path: 'about', component: AboutComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent},
   {path: 'user', children: [
     {path: '', component: ProfileComponent},
     {path: 'edit', component: ProfileEditComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'registration', component: RegistrationComponent},
   ]},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
@@ -52,12 +55,14 @@ const routes: Routes = [
 export class AppRoutingModule{
   static routableComponents = [
     HomeComponent,
+    JumbotronComponent,
     EventComponent,
     EventListComponent,
     EventDetailComponent,
     TicketComponent,
     TicketListComponent,
     TicketDetailComponent,
+    BidComponent,
     AboutComponent,
     LoginComponent,
     RegistrationComponent,
