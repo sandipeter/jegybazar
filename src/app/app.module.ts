@@ -9,6 +9,7 @@ import { EventcardComponent } from './event/eventcard/eventcard.component';
 import { FooterComponent } from './core/footer/footer.component';
 
 import {AppRoutingModule} from './app-routing.module';
+import {EventService} from "./shared/event.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import {AppRoutingModule} from './app-routing.module';
     CollapseModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [EventService],    // itt kell hozzáadni a servicet
   bootstrap: [AppComponent]
 })
 export class AppModule { }
