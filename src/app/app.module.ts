@@ -9,7 +9,7 @@ import { EventcardComponent } from './event/eventcard/eventcard.component';
 import { FooterComponent } from './core/footer/footer.component';
 
 import {AppRoutingModule} from './app-routing.module';
-import {EventService} from "./shared/event.service";
+import {EventService} from './shared/event.service';
 
 @NgModule({
   declarations: [

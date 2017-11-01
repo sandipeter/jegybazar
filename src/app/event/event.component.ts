@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {EventModel} from '../shared/event-model';
 
 @Component({
   selector: 'app-event',

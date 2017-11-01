@@ -8,6 +8,7 @@ export class EventModel {
   // new EventModel() vagy new EventModel(....) is jó -? miatt
   constructor(param?: EventModel) {
     if (param) {
+      Object.assign(this, param);
     }
   }
 }
