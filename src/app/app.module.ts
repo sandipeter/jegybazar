@@ -10,6 +10,7 @@ import { FooterComponent } from './core/footer/footer.component';
 
 import {AppRoutingModule} from './app-routing.module';
 import {EventService} from './shared/event.service';
+import {UserService} from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import {EventService} from './shared/event.service';
     CollapseModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [EventService],    // itt kell hozzáadni a servicet
+  providers: [EventService, UserService],    // itt kell hozzáadni a servicet
   bootstrap: [AppComponent]
 })
 export class AppModule { }
