@@ -12,6 +12,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {EventService} from './shared/event.service';
 import {UserService} from './shared/user.service';
 import {TicketService} from './shared/ticket.service';
+import {LoggedInGuard} from "./shared/logged-in.guard";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {TicketService} from './shared/ticket.service';
     AlertModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [EventService, UserService, TicketService],    // itt kell hozzáadni a servicet
+  providers: [EventService, UserService, TicketService, LoggedInGuard],    // itt kell hozzáadni a servicet
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,6 +16,7 @@ import {TicketListComponent} from './ticket/ticket-list/ticket-list.component';
 import {TicketDetailComponent} from './ticket/ticket-detail/ticket-detail.component';
 import {JumbotronComponent} from './core/jumbotron/jumbotron.component';
 import {BidComponent} from './ticket/bid/bid.component';
+import {LoggedInGuard} from './shared/logged-in.guard';
 
 
 const routes: Routes = [
@@ -39,8 +40,8 @@ const routes: Routes = [
   },
   {path: 'about', component: AboutComponent},
   {path: 'user', children: [
-    {path: '', component: ProfileComponent},
-    {path: 'edit', component: ProfileEditComponent},
+    {path: '', component: ProfileComponent, canActivate : [LoggedInGuard]},
+    {path: 'edit', component: ProfileEditComponent, canActivate : [LoggedInGuard]},
     {path: 'login', component: LoginComponent},
     {path: 'registration', component: RegistrationComponent},
   ]},
