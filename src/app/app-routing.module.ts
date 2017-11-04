@@ -39,6 +39,7 @@ const routes: Routes = [
     ]
   },
   {path: 'about', component: AboutComponent},
+
   {path: 'user', children: [
     {path: '', component: ProfileComponent, canActivate : [LoggedInGuard]},
     {path: 'edit', component: ProfileEditComponent, canActivate : [LoggedInGuard]},
