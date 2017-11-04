@@ -1,7 +1,7 @@
 export class EventModel {
   id?: number;
   name: string;
-  date: string // így egyszerűbb...
+  date: string; // így egyszerűbb...
   pictureURL: string;
   description: string;
 

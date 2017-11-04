@@ -12,7 +12,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {EventService} from './shared/event.service';
 import {UserService} from './shared/user.service';
 import {TicketService} from './shared/ticket.service';
-import {LoggedInGuard} from "./shared/logged-in.guard";
+import {LoggedInGuard} from './shared/logged-in.guard';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {LoggedInGuard} from "./shared/logged-in.guard";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     CollapseModule.forRoot(),
     AlertModule.forRoot(),
     AppRoutingModule
