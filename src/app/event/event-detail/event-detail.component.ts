@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from '../../shared/event.service';
 import {EventModel} from '../../shared/event-model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-event-detail',
@@ -12,7 +13,7 @@ export class EventDetailComponent implements OnInit {
 
   event: EventModel;
 
-  constructor(private _route: ActivatedRoute, private _eventService: EventService, private _router: Router) { }
+  constructor(private _route: ActivatedRoute, private _eventService: EventService, private _router: Router, private _location: Location) { }
 
   ngOnInit() {
     const evId = +this._route.snapshot.params['new'];   // ez egyenlő : this._route.snapshot.params?.id
@@ -26,6 +27,6 @@ export class EventDetailComponent implements OnInit {
     }else {
       this._eventService.create(this.event);
     }
-    this._router.navigate(['/event/list']);
+    this._location.back();
   }
 }
