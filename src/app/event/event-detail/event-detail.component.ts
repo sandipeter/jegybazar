@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../../shared/event.service';
 import {EventModel} from '../../shared/event-model';
 import { Location } from '@angular/common';
+import {UserService} from '../../shared/user.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -12,13 +13,21 @@ import { Location } from '@angular/common';
 export class EventDetailComponent implements OnInit {
 
   event: EventModel;
+  editForm = false;
 
-  constructor(private _route: ActivatedRoute, private _eventService: EventService, private _router: Router, private _location: Location) { }
+  constructor(private _route: ActivatedRoute,
+              private _eventService: EventService,
+              public userService: UserService,
+              private _location: Location) { }
 
   ngOnInit() {
     const evId = +this._route.snapshot.params['new'];   // ez egyenlő : this._route.snapshot.params?.id
-    this.event = this._eventService.getEventById(evId);
-
+    if (evId) {
+      this.event = this._eventService.getEventById(evId);
+    } else {
+      this.event = new EventModel(EventModel.emptyEvent);
+      this.editForm = true;
+    }
   }
 
   onSubmit(form) {
@@ -27,6 +36,12 @@ export class EventDetailComponent implements OnInit {
     }else {
       this._eventService.create(this.event);
     }
+    this._location.back();
+  }
+
+
+
+  navigateBack() {
     this._location.back();
   }
 }
