@@ -10,6 +10,7 @@ export class UserService {
   constructor(private _router: Router) {
     this._allUsers = this._getMockData();
   }
+
   login(email: string, password: string){
     if (email === 'angular' && password === 'angular'){
       this._user = new UserModel(UserModel.exampleUser);
@@ -19,6 +20,7 @@ export class UserService {
     }
     return false;   // sikertelen belépés
   }
+
   register(param?: UserModel){
     if(param) {
       this._user = new UserModel(param);
@@ -29,21 +31,33 @@ export class UserService {
     this._router.navigate(['/home']);
     console.log('be vagyunk lepve:', this.isLoggedin, this._user.name);
   }
+
   logout() {
     this._user = new UserModel(); // üres
     this.isLoggedin = false;
     this._router.navigate(['/home']);
     console.log('be vagyunk lepve:', this.isLoggedin, this._user.name);
   }
+
   getUserById(id: number){
-    const user = this._allUsers.filter(u => u.id === id);
+    const user = this._allUsers.filter(u => u.id === +id);
     return user.length > 0 ? user[0] : new UserModel(UserModel.emptyUser);
   }
+
   getCurrentUser(){
     return this._user;
   }
+
   private _getMockData() {
     return [
+      new UserModel({
+        'id': 0,
+        'name': 'Legyek Réka Matlida',
+        'email': 'legyekrekamatilda@valami.com',
+        'address': 'Futrinka utca',
+        'dateOfBirth': '2001.01.01',
+        'gender': 'female'
+      }),
       new UserModel({
         'id': 1,
         'name': 'Pista ba',
