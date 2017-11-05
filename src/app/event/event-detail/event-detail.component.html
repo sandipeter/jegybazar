@@ -29,14 +29,12 @@
     </div>
 
 
-    <div class="form-group">
       <div class="form-group mt-3">
         <label for="pictureUrl">Válassz képet az eseményhez</label>
         <input type="text" class="form-control mb-3" id="pictureUrl" placeholder="Eseményhez tartozó kép URL-je"
                [(ngModel)]="event.pictureURL" name="picUrl" required [disabled]="!editForm" #picUrl="ngModel">
         <alert type="danger" *ngIf="picUrl.touched && picUrl.invalid">Kötelező mező!</alert>
       </div>
-    </div>
 
 
     <div class="form-group">
