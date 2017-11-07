@@ -15,22 +15,27 @@ export class UserService {
 
   login(email: string, password: string){
     if (email === 'angular' && password === 'angular'){
-      this._user = new UserModel(UserModel.exampleUser);
+      this._user = this._allUsers[2];
       this.isLoggedin = true;
-      this._router.navigate(['/user']);
+      return true;
     }
     return false;   // sikertelen belépés
   }
 
   register(param?: UserModel){
-    if(param) {
-      this._user = new UserModel(param);
-    }else {
-      this._user = new UserModel(UserModel.exampleUser);
+    if (param) {
+      this._user = new UserModel({
+        id: 4,
+        ...param
+      });
+
+      this._allUsers = [
+        ...this._allUsers,
+        this._user
+      ];
     }
     this.isLoggedin = true;
-    this._router.navigate(['/home']);
-    console.log('be vagyunk lepve:', this.isLoggedin, this._user.name);
+    console.log('be vagyunk-e lepve:', this.isLoggedin);
   }
 
   logout() {
@@ -66,10 +71,10 @@ export class UserService {
       }),
       new UserModel({
         'id': 1,
-        'name': 'Pista ba',
-        'email': 'pistaba@pistaba.com',
-        'address': 'pistaba lak 12',
-        'dateOfBirth': '1900-01-01',
+        'name': 'sandipeter',
+        'email': 'sandipeter83@gmail.com',
+        'address': 'aranykút',
+        'dateOfBirth': '1983-12-26',
         'gender': 'male',
         'profilePictureUrl': 'http://3.bp.blogspot.com/-bUS0WbXC1YA/Uz0di05mS_I/AAAAAAAAQGg/u9o_g9VDTSg/s1600/pista_ba_animacio.jpg'
       }),
