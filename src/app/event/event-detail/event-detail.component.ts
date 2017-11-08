@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {EventService} from '../../shared/event.service';
-import {EventModel} from '../../shared/event-model';
 import { Location } from '@angular/common';
-import {UserService} from '../../shared/user.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { EventModel } from '../../shared/event-model';
+import { EventService } from '../../shared/event.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -11,35 +11,39 @@ import {UserService} from '../../shared/user.service';
   styleUrls: ['./event-detail.component.css']
 })
 export class EventDetailComponent implements OnInit {
-
   event: EventModel;
   editForm = false;
 
   constructor(private _route: ActivatedRoute,
               private _eventService: EventService,
-              public userService: UserService,
-              private _location: Location) { }
+              private _location: Location,
+              public userService: UserService) {
+  }
 
   ngOnInit() {
-    const evId = +this._route.snapshot.params['new'];   // ez egyenlő : this._route.snapshot.params?.id
+    // tanulsagos dolog, hogy ebben az esetben number-re kell castolni,
+    // mert routing-ban ami jon az biza string
+    const evId = this._route.snapshot.params['id'];
+    this.event = new EventModel(EventModel.emptyEvent);
     if (evId) {
-      // this.event = this._eventService.getEventById(evId);
-    } else {
-      this.event = new EventModel(EventModel.emptyEvent);
+      this._eventService.getEventById(evId)
+        .subscribe(evm => this.event = evm);
+      console.log('kaptunk eventid-t', evId);
+      console.log('kaptunk eventet', this.event);
       this.editForm = true;
     }
   }
 
   onSubmit(form) {
     if (this.event.id) {
-      this._eventService.update(this.event);     // two way binding van most, de normálisan : this.event.id, form - két paraméte rkelelne
-    }else {
+      console.log('update agban vagyunk');
+      this._eventService.update(this.event);
+    } else {
+      console.log('create agban vagyunk');
       this._eventService.create(this.event);
     }
     this._location.back();
   }
-
-
 
   navigateBack() {
     this._location.back();
